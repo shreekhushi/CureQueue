@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #d1eaff, #f3e5f5);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background styling */
+.app-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: radial-gradient(circle at top left, #bbdefb, #fce4ec);
+  backdrop-filter: blur(4px);
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 25px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 40px 50px;
+  text-align: center;
+  width: 420px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.3);
+}
+
+/* Titles */
+.app-title {
+  color: #1565c0;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.app-subtitle {
+  color: #555;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+/* Dropdown */
+.dropdown-section {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.dropdown-section label {
+  color: #333;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #bdbdbd;
+  background-color: #f8f9fa;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Upload area */
+.upload-box {
+  margin: 20px 0;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-btn {
+  background: linear-gradient(90deg, #2196f3, #64b5f6);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  transform: scale(1.05);
+}
+
+/* Preview */
+.image-preview {
+  margin: 20px 0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.image-preview img {
+  width: 50%;
+  height: 200px;
+  border-radius: 15px;
+}
+
+/* Predict button */
+.predict-btn {
+  background: linear-gradient(90deg, #43a047, #66bb6a);
+  color: white;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.predict-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #2e7d32, #4caf50);
+}
+
+.predict-btn.loading {
+  background: linear-gradient(90deg, #ffb74d, #ff9800);
+  cursor: wait;
+}
+
+/* Result card */
+.result-card {
+  margin-top: 25px;
+  border-radius: 18px;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.4s ease;
+}
+
+.result-card h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.result-card p {
+  margin-top: 8px;
+  font-size: 1.3rem;
+}
+
+.result-normal {
+  background: rgba(76, 175, 80, 0.15);
+  color: #1b5e20;
+  border: 2px solid #43a047;
+}
+
+.result-abnormal {
+  background: rgba(239, 83, 80, 0.15);
+  color: #b71c1c;
+  border: 2px solid #ef5350;
+}

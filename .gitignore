@@ -1,0 +1,26 @@
+# Python venv
+venv/
+
+# Datasets (never track)
+data/
+backend/data/
+*/data/
+
+# Training outputs
+*.zip
+*.npz
+
+# Cache
+__pycache__/
+*.pyc
+
+# Node modules
+frontend/**/node_modules/
+
+# Build artifacts
+frontend/**/build/
+dist/
+
+# System files
+.DS_Store
+Thumbs.db
