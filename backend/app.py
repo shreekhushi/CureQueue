@@ -1,26 +1,22 @@
 from fastapi import FastAPI, UploadFile, File
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from torchvision import models, transforms
 from PIL import Image
-import torch
-import io
-import os
+import torch, io, os
 
-# ==========================================
-# 🚀 FASTAPI APP INITIALIZATION
-# ==========================================
 app = FastAPI(title="Healthcare Disease Detection API")
 
-# Allow frontend access (React, Node, etc.)
+# CORS – we'll later restrict this to your Vercel URL
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # change to frontend domain later
+    allow_origins=["*"],  # later: ["https://your-frontend.vercel.app"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ...your existing MODEL_DIR, CLASS_NAMES, load_model(), predict_image(), routes...
 
 # ==========================================
 # 🖼️ FRONTEND BUILD (React Deployment Support)
