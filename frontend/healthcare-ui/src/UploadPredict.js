@@ -10,7 +10,7 @@ export default function UploadPredict() {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("http://127.0.0.1:8000/predict", {
+    const res = await fetch("https://healthcare-backend-lg75.onrender.com", {
       method: "POST",
       body: formData,
     });
