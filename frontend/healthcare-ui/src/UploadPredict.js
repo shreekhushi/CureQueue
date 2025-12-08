@@ -10,10 +10,13 @@ export default function UploadPredict() {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("https://healthcare-backend-lg75.onrender.com", {
-      method: "POST",
-      body: formData,
-    });
+    // Assuming you have a state variable called 'selectedOrgan' or 'organType'
+// (Use the variable name that stores the value from your dropdown)
+
+const res = await fetch(`https://healthcare-backend-lg75.onrender.com/predict/${organType}`, {
+    method: "POST",
+    body: formData,
+});
     const data = await res.json();
     setResult(data);
   }
