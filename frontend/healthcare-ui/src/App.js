@@ -28,11 +28,11 @@ function App() {
     setResult("");
 
     try {
-      const res = await axios.post(
-        `https://healthcare-backend-lg75.onrender.com/predict/${organType}`,
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      // Change ' to ` (backtick)
+const res = await axios.post(`https://healthcare-backend-lg75.onrender.com/predict/${organType}`, 
+  formData, 
+  { headers: { "Content-Type": "multipart/form-data" } }
+);
       setResult(res.data.prediction);
     } catch (err) {
       console.error(err);
