@@ -29,7 +29,7 @@ function App() {
 
     try {
       const res = await axios.post(
-        `http://127.0.0.1:8000/predict/${disease}`,
+        `https://healthcare-backend-lg75.onrender.com/predict/${organType}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
