@@ -13,6 +13,7 @@ export default function UploadPredict() {
     // Assuming you have a state variable called 'selectedOrgan' or 'organType'
 // (Use the variable name that stores the value from your dropdown)
 
+// Make sure you are using backticks (`) not single quotes (')
 const res = await fetch(`https://healthcare-backend-lg75.onrender.com/predict/${organType}`, {
     method: "POST",
     body: formData,
