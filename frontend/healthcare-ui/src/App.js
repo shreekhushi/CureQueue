@@ -7,7 +7,7 @@ function App() {
   const [preview, setPreview] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
-  const [disease, setDisease] = useState("breast");
+  const [organType, setOrganType] = useState("breast"); // ✅ FIX
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -28,75 +28,47 @@ function App() {
     setResult("");
 
     try {
-      // Change ' to ` (backtick)
-const res = await axios.post(`https://healthcare-backend-lg75.onrender.com/predict/${organType}`, 
-  formData, 
-  { headers: { "Content-Type": "multipart/form-data" } }
-);
+      const res = await axios.post(
+        `http://127.0.0.1:8000/predict/${organType}`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
       setResult(res.data.prediction);
     } catch (err) {
       console.error(err);
-      alert("Error while processing image.");
+      alert("Error while processing image");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="app-bg">
-      <div className="glass-card">
-        <h1 className="app-title">🩺 Multi-Organ Disease Detection</h1>
-        <p className="app-subtitle">Upload your scan for instant analysis</p>
+    <div className="app-container">
+      <div className="card">
+        <h1>🩺 Multi-Organ Disease Detection</h1>
 
-        <div className="dropdown-section">
-          <label>Select Organ Type:</label>
-          <select
-            value={disease}
-            onChange={(e) => setDisease(e.target.value)}
-            className="dropdown"
-          >
-            <option value="lung">Lung</option>
-            <option value="liver">Liver</option>
-            <option value="breast">Breast</option>
-          </select>
-        </div>
-
-        <div className="upload-box">
-          <input
-            type="file"
-            accept="image/*"
-            id="file-upload"
-            onChange={handleFileChange}
-          />
-          <label htmlFor="file-upload" className="upload-btn">
-            {file ? "📸 " + file.name : "Upload Image"}
-          </label>
-        </div>
-
-        {preview && (
-          <div className="image-preview">
-            <img src={preview} alt="Preview" />
-          </div>
-        )}
-
-        <button
-          onClick={handleUpload}
-          className={`predict-btn ${loading ? "loading" : ""}`}
-          disabled={loading}
+        <label>Select Organ Type:</label>
+        <select
+          value={organType}
+          onChange={(e) => setOrganType(e.target.value)}
         >
-          {loading ? "🔍 Analyzing..." : "🚀 Predict"}
+          <option value="breast">Breast</option>
+          <option value="lung">Lung</option>
+          <option value="liver">Liver</option>
+        </select>
+
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+
+        {preview && <img src={preview} alt="preview" className="preview-img" />}
+
+        <button onClick={handleUpload} disabled={loading}>
+          {loading ? "Analyzing..." : "Predict"}
         </button>
 
         {result && (
-          <div
-            className={`result-card ${
-              result.toLowerCase().includes("normal") ||
-              result.toLowerCase().includes("benign")
-                ? "result-normal"
-                : "result-abnormal"
-            }`}
-          >
-            <h2>Prediction Result:</h2>
+          <div className="result-box">
+            <h2>Prediction:</h2>
             <p>{result}</p>
           </div>
         )}
