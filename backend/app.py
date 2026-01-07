@@ -4,24 +4,21 @@ import torch
 import uvicorn
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
 from torchvision import models, transforms
 from PIL import Image
 
 # Initialize App
 app = FastAPI(title="Healthcare Disease Detection API")
 
-# ==========================================
-# 🌐 CORS CONFIGURATION
-# ==========================================
-# This allows your Vercel frontend to talk to this backend
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
-    allow_credentials=True,
+    allow_origins=["*"],  # allow Vercel
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ==========================================
 # 🔧 CONFIGURATION

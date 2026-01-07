@@ -14,7 +14,7 @@ export default function UploadPredict() {
 // (Use the variable name that stores the value from your dropdown)
 
 // Make sure you are using backticks (`) not single quotes (')
-const res = await fetch(`https://healthcare-backend-lg75.onrender.com/predict/${organType}`, {
+const res = await fetch(`https://detection-jvr6.onrender.com/predict/${organType}`, {
     method: "POST",
     body: formData,
 });
