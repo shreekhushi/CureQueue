@@ -7,7 +7,10 @@ function App() {
   const [preview, setPreview] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
-  const [organType, setOrganType] = useState("breast"); // ✅ FIX
+  const [organType, setOrganType] = useState("breast");
+
+  // ✅ Use ENV variable (THIS IS CRITICAL)
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -22,6 +25,11 @@ function App() {
       return;
     }
 
+    if (!API_URL) {
+      alert("API URL not configured");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("file", file);
     setLoading(true);
@@ -29,10 +37,16 @@ function App() {
 
     try {
       const res = await axios.post(
-        `http://127.0.0.1:8000/predict/${organType}`,
+        `${API_URL}/predict/${organType}`,
         formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
+      console.log("API URL:", process.env.REACT_APP_API_URL);
+
 
       setResult(res.data.prediction);
     } catch (err) {
@@ -60,7 +74,9 @@ function App() {
 
         <input type="file" accept="image/*" onChange={handleFileChange} />
 
-        {preview && <img src={preview} alt="preview" className="preview-img" />}
+        {preview && (
+          <img src={preview} alt="preview" className="preview-img" />
+        )}
 
         <button onClick={handleUpload} disabled={loading}>
           {loading ? "Analyzing..." : "Predict"}

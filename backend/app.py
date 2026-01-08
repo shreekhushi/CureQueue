@@ -4,13 +4,14 @@ import torch
 import uvicorn
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from torchvision import models, transforms
 from PIL import Image
 
 # Initialize App
 app = FastAPI(title="Healthcare Disease Detection API")
 
-from fastapi.middleware.cors import CORSMiddleware
+
 
 app.add_middleware(
     CORSMiddleware,
